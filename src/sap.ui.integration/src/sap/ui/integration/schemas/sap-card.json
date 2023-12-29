@@ -255,7 +255,7 @@
         {
           "properties": {
             "content": {
-                "$ref": "#/definitions/ContentType.Component"
+              "$ref": "#/definitions/ContentType.Component"
             }
           }
         }
