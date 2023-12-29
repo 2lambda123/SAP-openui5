@@ -2,133 +2,144 @@
  * ${copyright}
  */
 
- sap.ui.define(['sap/ui/core/Renderer', 'sap/ui/core/library', "sap/ui/util/defaultLinkTypes"],
-	function(Renderer, coreLibrary, defaultLinkTypes) {
-	"use strict";
+sap.ui.define(
+    [
+      'sap/ui/core/Renderer', 'sap/ui/core/library',
+      "sap/ui/util/defaultLinkTypes"
+    ],
+    function(Renderer, coreLibrary, defaultLinkTypes) {
+      "use strict";
 
+      // shortcut for sap.ui.core.TextDirection
+      var TextDirection = coreLibrary.TextDirection;
 
-	// shortcut for sap.ui.core.TextDirection
-	var TextDirection = coreLibrary.TextDirection;
+      /**
+       * Link renderer
+       * @namespace
+       */
+      var LinkRenderer = {apiVersion : 2};
 
+      /**
+       * Renders the HTML for the given control, using the provided {@link
+       * sap.ui.core.RenderManager}.
+       *
+       * @param {sap.ui.core.RenderManager} oRm the RenderManager that can be
+       *     used for writing to the render output buffer
+       * @param {sap.ui.core.Control} oControl an object representation of the
+       *     control that should be rendered
+       */
+      LinkRenderer.render = function(oRm, oControl) {
+        var sTextDir = oControl.getTextDirection(),
+            sTextAlign =
+                Renderer.getTextAlign(oControl.getTextAlign(), sTextDir),
+            bShouldHaveOwnLabelledBy =
+                oControl._determineSelfReferencePresence(),
+            sHref = oControl.getHref(),
+            sRel = defaultLinkTypes(oControl.getRel(), oControl.getTarget()),
+            oAccAttributes = {
+              labelledby : bShouldHaveOwnLabelledBy
+                               ? {value : oControl.getId(), append : true}
+                               : undefined
+            },
+            bIsValid = sHref && oControl._isHrefValid(sHref),
+            bEnabled = oControl.getEnabled(), sTypeSemanticInfo = "";
 
-	/**
-	 * Link renderer
-	 * @namespace
-	 */
-	var LinkRenderer = {
-			apiVersion: 2
-	};
+        // Link is rendered as a "<a>" element
+        oRm.openStart("a", oControl);
 
+        oRm.class("sapMLnk");
+        if (oControl.getSubtle()) {
+          oRm.class("sapMLnkSubtle");
+          sTypeSemanticInfo += oControl._sAriaLinkSubtleId;
+        }
 
-	/**
-	 * Renders the HTML for the given control, using the provided {@link sap.ui.core.RenderManager}.
-	 *
-	 * @param {sap.ui.core.RenderManager} oRm the RenderManager that can be used for writing to the render output buffer
-	 * @param {sap.ui.core.Control} oControl an object representation of the control that should be rendered
-	 */
-	LinkRenderer.render = function(oRm, oControl) {
-		var sTextDir = oControl.getTextDirection(),
-			sTextAlign = Renderer.getTextAlign(oControl.getTextAlign(), sTextDir),
-			bShouldHaveOwnLabelledBy = oControl._determineSelfReferencePresence(),
-			sHref = oControl.getHref(),
-			sRel = defaultLinkTypes(oControl.getRel(), oControl.getTarget()),
-			oAccAttributes =  {
-				labelledby: bShouldHaveOwnLabelledBy ? {value: oControl.getId(), append: true } : undefined
-			},
-			bIsValid = sHref && oControl._isHrefValid(sHref),
-			bEnabled = oControl.getEnabled(),
-			sTypeSemanticInfo = "";
+        if (oControl.getEmphasized()) {
+          oRm.class("sapMLnkEmphasized");
+          sTypeSemanticInfo += " " + oControl._sAriaLinkEmphasizedId;
+        }
 
-		// Link is rendered as a "<a>" element
-		oRm.openStart("a", oControl);
+        oAccAttributes.describedby =
+            sTypeSemanticInfo
+                ? {value : sTypeSemanticInfo.trim(), append : true}
+                : undefined;
 
-		oRm.class("sapMLnk");
-		if (oControl.getSubtle()) {
-			oRm.class("sapMLnkSubtle");
-			sTypeSemanticInfo += oControl._sAriaLinkSubtleId;
-		}
+        if (!bEnabled) {
+          oRm.class("sapMLnkDsbl");
+          oRm.attr("aria-disabled", "true");
+        }
+        oRm.attr("tabindex", oControl._getTabindex());
 
-		if (oControl.getEmphasized()) {
-			oRm.class("sapMLnkEmphasized");
-			sTypeSemanticInfo += " " + oControl._sAriaLinkEmphasizedId;
-		}
+        if (oControl.getWrapping()) {
+          oRm.class("sapMLnkWrapping");
+        }
 
-		oAccAttributes.describedby = sTypeSemanticInfo ? {value: sTypeSemanticInfo.trim(), append: true} : undefined;
+        if (oControl.getTooltip_AsString()) {
+          oRm.attr("title", oControl.getTooltip_AsString());
+        }
 
-		if (!bEnabled) {
-			oRm.class("sapMLnkDsbl");
-			oRm.attr("aria-disabled", "true");
-		}
-		oRm.attr("tabindex", oControl._getTabindex());
+        /* set href only if link is enabled - BCP incident 1570020625 */
+        if (bIsValid && bEnabled) {
+          oRm.attr("href", sHref);
+        } else if (oControl.getText()) {
+          // Add href only if there's text. Otherwise virtual cursor would stop
+          // on the empty link. BCP 2070055617
+          oRm.attr("href", "");
+        }
 
-		if (oControl.getWrapping()) {
-			oRm.class("sapMLnkWrapping");
-		}
+        if (oControl.getTarget()) {
+          oRm.attr("target", oControl.getTarget());
+        }
 
-		if (oControl.getTooltip_AsString()) {
-			oRm.attr("title", oControl.getTooltip_AsString());
-		}
+        if (sRel) {
+          oRm.attr("rel", sRel);
+        }
 
-		/* set href only if link is enabled - BCP incident 1570020625 */
-		if (bIsValid && bEnabled) {
-			oRm.attr("href", sHref);
-		} else if (oControl.getText()) {
-			// Add href only if there's text. Otherwise virtual cursor would stop on the empty link. BCP 2070055617
-			oRm.attr("href", "");
-		}
+        if (oControl.getWidth()) {
+          oRm.style("width", oControl.getWidth());
+        } else {
+          oRm.class("sapMLnkMaxWidth");
+        }
 
-		if (oControl.getTarget()) {
-			oRm.attr("target", oControl.getTarget());
-		}
+        if (sTextAlign) {
+          oRm.style("text-align", sTextAlign);
+        }
 
-		if (sRel) {
-			oRm.attr("rel", sRel);
-		}
+        // check if textDirection property is not set to default "Inherit" and
+        // add "dir" attribute
+        if (sTextDir !== TextDirection.Inherit) {
+          oRm.attr("dir", sTextDir.toLowerCase());
+        }
 
-		if (oControl.getWidth()) {
-			oRm.style("width", oControl.getWidth());
-		} else {
-			oRm.class("sapMLnkMaxWidth");
-		}
+        oControl.getDragDropConfig().forEach(function(oDNDConfig) {
+          if (!oDNDConfig.getEnabled()) {
+            oRm.attr("draggable", false);
+          }
+        });
 
-		if (sTextAlign) {
-			oRm.style("text-align", sTextAlign);
-		}
+        oRm.accessibilityState(oControl, oAccAttributes);
+        // opening <a> tag
+        oRm.openEnd();
 
-		// check if textDirection property is not set to default "Inherit" and add "dir" attribute
-		if (sTextDir !== TextDirection.Inherit) {
-			oRm.attr("dir", sTextDir.toLowerCase());
-		}
+        if (this.writeText) {
+          this.writeText(oRm, oControl);
+        } else {
+          this.renderText(oRm, oControl);
+        }
 
-		oControl.getDragDropConfig().forEach(function (oDNDConfig) {
-			if (!oDNDConfig.getEnabled()) {
-				oRm.attr("draggable", false);
-			}
-		});
+        oRm.close("a");
+      };
 
-		oRm.accessibilityState(oControl, oAccAttributes);
-		// opening <a> tag
-		oRm.openEnd();
+      /**
+       * Renders the normalized text property.
+       *
+       * @param {sap.ui.core.RenderManager} oRm The RenderManager that can be
+       *     used for writing to the render output buffer.
+       * @param {sap.m.Link} oControl An object representation of the control
+       *     that should be rendered.
+       */
+      LinkRenderer.renderText = function(
+          oRm, oControl) { oRm.text(oControl.getText()); };
 
-		if (this.writeText) {
-			this.writeText(oRm, oControl);
-		} else {
-			this.renderText(oRm, oControl);
-		}
-
-		oRm.close("a");
-	};
-
-	/**
-	 * Renders the normalized text property.
-	 *
-	 * @param {sap.ui.core.RenderManager} oRm The RenderManager that can be used for writing to the render output buffer.
-	 * @param {sap.m.Link} oControl An object representation of the control that should be rendered.
-	 */
-	LinkRenderer.renderText = function(oRm, oControl) {
-		oRm.text(oControl.getText());
-	};
-
-	return LinkRenderer;
-
- }, /* bExport= */ true);
+      return LinkRenderer;
+    },
+    /* bExport= */ true);

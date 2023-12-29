@@ -4,24 +4,20 @@
  * @private
  * @experimental
  */
-sap.ui.define([
-	"sap/ui/integration/designtime/cardEditor/config/AppConfig",
-	"sap/ui/integration/designtime/cardEditor/config/HeaderConfig",
-	"sap/ui/integration/designtime/cardEditor/config/ListCardConfig",
-	"sap/ui/integration/designtime/cardEditor/config/ObjectCardConfig",
-	"sap/ui/integration/designtime/cardEditor/config/TableCardConfig",
-	"sap/ui/integration/designtime/cardEditor/config/generateDataConfig"
-], function (
-	AppConfig,
-	HeaderConfig,
-	ListCardConfig,
-	ObjectCardConfig,
-	TableCardConfig,
-	generateDataConfig
-) {
-	"use strict";
+sap.ui.define(
+    [
+      "sap/ui/integration/designtime/cardEditor/config/AppConfig",
+      "sap/ui/integration/designtime/cardEditor/config/HeaderConfig",
+      "sap/ui/integration/designtime/cardEditor/config/ListCardConfig",
+      "sap/ui/integration/designtime/cardEditor/config/ObjectCardConfig",
+      "sap/ui/integration/designtime/cardEditor/config/TableCardConfig",
+      "sap/ui/integration/designtime/cardEditor/config/generateDataConfig"
+    ],
+    function(AppConfig, HeaderConfig, ListCardConfig, ObjectCardConfig,
+             TableCardConfig, generateDataConfig) {
+      "use strict";
 
-	return {
+      return {
 		"context": "sap.card",
 		"layout": {
 			"form": {
@@ -175,4 +171,4 @@ sap.ui.define([
 		},
 		"i18n": "sap/ui/integration/designtime/cardEditor/i18n/i18n.properties"
 	};
-});
+    });
