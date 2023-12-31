@@ -1,259 +1,303 @@
 /*!
  * ${copyright}
  */
-sap.ui.define([
-	"sap/base/util/extend",
-	"sap/base/util/isEmptyObject",
-	"sap/f/cards/NumericHeader",
-	"sap/f/cards/NumericHeaderRenderer",
-	"sap/f/cards/NumericSideIndicator",
-	"sap/ui/model/json/JSONModel",
-	"sap/ui/integration/util/LoadingProvider"
-], function (
-	extend,
-	isEmptyObject,
-	FNumericHeader,
-	FNumericHeaderRenderer,
-	NumericSideIndicator,
-	JSONModel,
-	LoadingProvider
-) {
-	"use strict";
+sap.ui.define(
+    [
+        "sap/base/util/extend",
+        "sap/base/util/isEmptyObject",
+        "sap/f/cards/NumericHeader",
+        "sap/f/cards/NumericHeaderRenderer",
+        "sap/f/cards/NumericSideIndicator",
+        "sap/ui/model/json/JSONModel",
+        "sap/ui/integration/util/LoadingProvider",
+    ],
+    function (
+        extend,
+        isEmptyObject,
+        FNumericHeader,
+        FNumericHeaderRenderer,
+        NumericSideIndicator,
+        JSONModel,
+        LoadingProvider,
+    ) {
+        "use strict";
 
+        /**
+         * Constructor for a new <code>NumericHeader</code>.
+         *
+         * @param {string} [sId] ID for the new control, generated automatically
+         *     if no ID is given
+         * @param {object} [mSettings] Initial settings for the new control
+         *
+         * @class
+         * Displays general information in the header of the {@link
+         * sap.ui.integration.widgets.Card}.
+         * @extends sap.f.NumericHeader
+         *
+         * @author SAP SE
+         * @version ${version}
+         *
+         * @constructor
+         * @private
+         * @since 1.77
+         * @alias sap.ui.integration.cards.Header
+         * @ui5-metamodel This control/element also will be described in the UI5
+         * (legacy) designtime metamodel
+         */
+        var NumericHeader = FNumericHeader.extend(
+            "sap.ui.integration.cards.NumericHeader",
+            {
+                constructor: function (
+                    mConfiguration,
+                    oActionsToolbar,
+                    sAppId,
+                ) {
+                    mConfiguration = mConfiguration || {};
+                    this._sAppId = sAppId;
 
-	/**
-	 * Constructor for a new <code>NumericHeader</code>.
-	 *
-	 * @param {string} [sId] ID for the new control, generated automatically if no ID is given
-	 * @param {object} [mSettings] Initial settings for the new control
-	 *
-	 * @class
-	 * Displays general information in the header of the {@link sap.ui.integration.widgets.Card}.
-	 * @extends sap.f.NumericHeader
-	 *
-	 * @author SAP SE
-	 * @version ${version}
-	 *
-	 * @constructor
-	 * @private
-	 * @since 1.77
-	 * @alias sap.ui.integration.cards.Header
-	 * @ui5-metamodel This control/element also will be described in the UI5 (legacy) designtime metamodel
-	 */
-	var NumericHeader = FNumericHeader.extend("sap.ui.integration.cards.NumericHeader", {
+                    this._bIsEmpty = isEmptyObject(mConfiguration);
 
-		constructor: function (mConfiguration, oActionsToolbar, sAppId) {
+                    var mSettings = {
+                        title: mConfiguration.title,
+                        subtitle: mConfiguration.subTitle,
+                    };
 
-			mConfiguration = mConfiguration || {};
-			this._sAppId = sAppId;
+                    if (
+                        mConfiguration.status &&
+                        mConfiguration.status.text &&
+                        !mConfiguration.status.text.format
+                    ) {
+                        mSettings.statusText = mConfiguration.status.text;
+                    }
 
-			this._bIsEmpty = isEmptyObject(mConfiguration);
+                    extend(mSettings, {
+                        unitOfMeasurement: mConfiguration.unitOfMeasurement,
+                        details: mConfiguration.details,
+                    });
 
-			var mSettings = {
-				title: mConfiguration.title,
-				subtitle: mConfiguration.subTitle
-			};
+                    if (mConfiguration.mainIndicator) {
+                        mSettings.number = mConfiguration.mainIndicator.number;
+                        mSettings.scale = mConfiguration.mainIndicator.unit;
+                        mSettings.trend = mConfiguration.mainIndicator.trend;
+                        mSettings.state = mConfiguration.mainIndicator.state; // TODO convert ValueState to ValueColor
+                    }
 
-			if (mConfiguration.status && mConfiguration.status.text && !mConfiguration.status.text.format) {
-				mSettings.statusText = mConfiguration.status.text;
-			}
+                    if (mConfiguration.sideIndicators) {
+                        mSettings.sideIndicators =
+                            mConfiguration.sideIndicators.map(
+                                function (mIndicator) {
+                                    // TODO validate that it is an array and
+                                    // with no more than 2 elements
+                                    return new NumericSideIndicator(mIndicator);
+                                },
+                            );
+                    }
 
-			extend(mSettings, {
-				unitOfMeasurement: mConfiguration.unitOfMeasurement,
-				details: mConfiguration.details
-			});
+                    mSettings.toolbar = oActionsToolbar;
 
-			if (mConfiguration.mainIndicator) {
-				mSettings.number = mConfiguration.mainIndicator.number;
-				mSettings.scale = mConfiguration.mainIndicator.unit;
-				mSettings.trend = mConfiguration.mainIndicator.trend;
-				mSettings.state = mConfiguration.mainIndicator.state; // TODO convert ValueState to ValueColor
-			}
+                    FNumericHeader.call(this, mSettings);
 
-			if (mConfiguration.sideIndicators) {
-				mSettings.sideIndicators = mConfiguration.sideIndicators.map(function (mIndicator) { // TODO validate that it is an array and with no more than 2 elements
-					return new NumericSideIndicator(mIndicator);
-				});
-			}
+                    if (oActionsToolbar) {
+                        oActionsToolbar.attachVisibilityChange(
+                            this._handleToolbarVisibilityChange.bind(this),
+                        );
+                    }
+                },
+                metadata: { library: "sap.ui.integration", properties: {} },
+                renderer: FNumericHeaderRenderer,
+            },
+        );
 
-			mSettings.toolbar = oActionsToolbar;
+        /**
+         * Initialization hook.
+         * @private
+         */
+        NumericHeader.prototype.init = function () {
+            FNumericHeader.prototype.init.call(this);
 
-			FNumericHeader.call(this, mSettings);
+            this._bReady = false;
 
-			if (oActionsToolbar) {
-				oActionsToolbar.attachVisibilityChange(this._handleToolbarVisibilityChange.bind(this));
-			}
-		},
-		metadata: {
-			library: "sap.ui.integration",
-			properties: {
-			}
-		},
-		renderer: FNumericHeaderRenderer
-	});
+            this._oLoadingProvider = new LoadingProvider();
 
-	/**
-	 * Initialization hook.
-	 * @private
-	 */
-	NumericHeader.prototype.init = function () {
+            this._aReadyPromises = [];
 
-		FNumericHeader.prototype.init.call(this);
+            // So far the ready event will be fired when the data is ready. But this
+            // can change in the future.
+            this._awaitEvent("_dataReady");
 
-		this._bReady = false;
+            Promise.all(this._aReadyPromises).then(
+                function () {
+                    this._bReady = true;
+                    this.fireEvent("_ready");
+                }.bind(this),
+            );
+        };
 
-		this._oLoadingProvider = new LoadingProvider();
+        NumericHeader.prototype.exit = function () {
+            FNumericHeader.prototype.exit.call(this);
 
-		this._aReadyPromises = [];
+            this._oServiceManager = null;
+            this._oDataProviderFactory = null;
 
-		// So far the ready event will be fired when the data is ready. But this can change in the future.
-		this._awaitEvent("_dataReady");
+            if (this._oDataProvider) {
+                this._oDataProvider.destroy();
+                this._oDataProvider = null;
+            }
 
-		Promise.all(this._aReadyPromises).then(function () {
-			this._bReady = true;
-			this.fireEvent("_ready");
-		}.bind(this));
-	};
+            if (this._oActions) {
+                this._oActions.destroy();
+                this._oActions = null;
+            }
 
-	NumericHeader.prototype.exit = function () {
+            if (this._oLoadingProvider) {
+                this._oLoadingProvider.destroy();
+                this._oLoadingProvider = null;
+            }
+        };
 
-		FNumericHeader.prototype.exit.call(this);
+        /**
+         * @public
+         * @returns {boolean} If the header is ready or not.
+         */
+        NumericHeader.prototype.isReady = function () {
+            return this._bReady;
+        };
 
-		this._oServiceManager = null;
-		this._oDataProviderFactory = null;
+        NumericHeader.prototype.isLoading = function () {
+            var oLoadingProvider = this._oLoadingProvider,
+                oCard = this.getParent(),
+                cardLoading =
+                    oCard.getMetadata()._sClassName ===
+                    "sap.ui.integration.widgets.Card"
+                        ? oCard.isLoading()
+                        : false;
 
-		if (this._oDataProvider) {
-			this._oDataProvider.destroy();
-			this._oDataProvider = null;
-		}
+            return (
+                !oLoadingProvider.getDataProviderJSON() &&
+                (oLoadingProvider.getLoadingState() || cardLoading)
+            );
+        };
 
-		if (this._oActions) {
-			this._oActions.destroy();
-			this._oActions = null;
-		}
+        /**
+         * Await for an event which controls the overall "ready" state of the
+         * header.
+         *
+         * @private
+         * @param {string} sEvent The name of the event
+         */
+        NumericHeader.prototype._awaitEvent = function (sEvent) {
+            this._aReadyPromises.push(
+                new Promise(
+                    function (resolve) {
+                        this.attachEventOnce(sEvent, function () {
+                            resolve();
+                        });
+                    }.bind(this),
+                ),
+            );
+        };
 
-		if (this._oLoadingProvider) {
-			this._oLoadingProvider.destroy();
-			this._oLoadingProvider = null;
-		}
-	};
+        NumericHeader.prototype.setServiceManager = function (oServiceManager) {
+            this._oServiceManager = oServiceManager;
+            return this;
+        };
 
+        NumericHeader.prototype.setDataProviderFactory = function (
+            oDataProviderFactory,
+        ) {
+            this._oDataProviderFactory = oDataProviderFactory;
+            return this;
+        };
 
-	/**
-	 * @public
-	 * @returns {boolean} If the header is ready or not.
-	 */
-	NumericHeader.prototype.isReady = function () {
-		return this._bReady;
-	};
+        /**
+         * Sets a data settings to the header.
+         *
+         * @private
+         * @param {object} oDataSettings The data settings
+         */
+        NumericHeader.prototype._setDataConfiguration = function (
+            oDataSettings,
+        ) {
+            var sPath = "/";
+            if (oDataSettings && oDataSettings.path) {
+                sPath = oDataSettings.path;
+            }
+            this.bindObject(sPath);
 
+            if (this._oDataProvider) {
+                this._oDataProvider.destroy();
+            }
 
-	NumericHeader.prototype.isLoading = function () {
-		var oLoadingProvider = this._oLoadingProvider,
-			oCard = this.getParent(),
-			cardLoading = oCard.getMetadata()._sClassName === 'sap.ui.integration.widgets.Card' ? oCard.isLoading() : false;
+            this._oDataProvider = this._oDataProviderFactory.create(
+                oDataSettings,
+                this._oServiceManager,
+            );
 
-		return !oLoadingProvider.getDataProviderJSON() && (oLoadingProvider.getLoadingState() || cardLoading);
-	};
+            if (this._oDataProvider) {
+                // If a data provider is created use an own model. Otherwise bind to
+                // the one propagated from the card.
+                this.setModel(new JSONModel());
 
-	/**
-	 * Await for an event which controls the overall "ready" state of the header.
-	 *
-	 * @private
-	 * @param {string} sEvent The name of the event
-	 */
-	NumericHeader.prototype._awaitEvent = function (sEvent) {
-		this._aReadyPromises.push(new Promise(function (resolve) {
-			this.attachEventOnce(sEvent, function () {
-				resolve();
-			});
-		}.bind(this)));
-	};
+                this._oDataProvider.attachDataRequested(
+                    function () {
+                        this.onDataRequested();
+                    }.bind(this),
+                );
 
+                this._oDataProvider.attachDataChanged(
+                    function (oEvent) {
+                        this._updateModel(oEvent.getParameter("data"));
+                        this.onDataRequestComplete();
+                    }.bind(this),
+                );
 
-	NumericHeader.prototype.setServiceManager = function (oServiceManager) {
-		this._oServiceManager = oServiceManager;
-		return this;
-	};
+                this._oDataProvider.attachError(
+                    function (oEvent) {
+                        this._handleError(oEvent.getParameter("message"));
+                        this.onDataRequestComplete();
+                    }.bind(this),
+                );
 
-	NumericHeader.prototype.setDataProviderFactory = function (oDataProviderFactory) {
-		this._oDataProviderFactory = oDataProviderFactory;
-		return this;
-	};
+                this._oDataProvider.triggerDataUpdate();
+            } else {
+                this.fireEvent("_dataReady");
+            }
+        };
 
-	/**
-	 * Sets a data settings to the header.
-	 *
-	 * @private
-	 * @param {object} oDataSettings The data settings
-	 */
-	NumericHeader.prototype._setDataConfiguration = function (oDataSettings) {
-		var sPath = "/";
-		if (oDataSettings && oDataSettings.path) {
-			sPath = oDataSettings.path;
+        NumericHeader.prototype._updateModel = function (oData) {
+            this.getModel().setData(oData);
+        };
 
-		}
-		this.bindObject(sPath);
+        NumericHeader.prototype._handleError = function (sLogMessage) {
+            this.fireEvent("_error", { logMessage: sLogMessage });
+        };
 
-		if (this._oDataProvider) {
-			this._oDataProvider.destroy();
-		}
+        NumericHeader.prototype._handleToolbarVisibilityChange = function (
+            oEvent,
+        ) {
+            var bToolbarVisible = oEvent.getParameter("visible");
 
+            if (this._bIsEmpty && this.getVisible() !== bToolbarVisible) {
+                this.setVisible(bToolbarVisible);
+                setTimeout(
+                    function () {
+                        this.invalidate();
+                    }.bind(this),
+                    0,
+                );
+            }
+        };
 
-		this._oDataProvider = this._oDataProviderFactory.create(oDataSettings, this._oServiceManager);
+        NumericHeader.prototype.onDataRequested = function () {
+            this._oLoadingProvider.createLoadingState(this._oDataProvider);
+        };
 
-		if (this._oDataProvider) {
-			// If a data provider is created use an own model. Otherwise bind to the one propagated from the card.
-			this.setModel(new JSONModel());
+        NumericHeader.prototype.onDataRequestComplete = function () {
+            this.fireEvent("_dataReady");
+            this._oLoadingProvider.setLoading(false);
+            this._oLoadingProvider.removeHeaderPlaceholder(this);
+        };
 
-			this._oDataProvider.attachDataRequested(function () {
-				this.onDataRequested();
-			}.bind(this));
-
-			this._oDataProvider.attachDataChanged(function (oEvent) {
-				this._updateModel(oEvent.getParameter("data"));
-				this.onDataRequestComplete();
-			}.bind(this));
-
-			this._oDataProvider.attachError(function (oEvent) {
-				this._handleError(oEvent.getParameter("message"));
-				this.onDataRequestComplete();
-			}.bind(this));
-
-			this._oDataProvider.triggerDataUpdate();
-		} else {
-			this.fireEvent("_dataReady");
-		}
-	};
-
-	NumericHeader.prototype._updateModel = function (oData) {
-		this.getModel().setData(oData);
-	};
-
-	NumericHeader.prototype._handleError = function (sLogMessage) {
-		this.fireEvent("_error", { logMessage: sLogMessage });
-	};
-
-	NumericHeader.prototype._handleToolbarVisibilityChange = function (oEvent) {
-		var bToolbarVisible = oEvent.getParameter("visible");
-
-		if (this._bIsEmpty && this.getVisible() !== bToolbarVisible) {
-			this.setVisible(bToolbarVisible);
-			setTimeout(function () {
-				this.invalidate();
-			}.bind(this), 0);
-		}
-	};
-
-	NumericHeader.prototype.onDataRequested = function () {
-		this._oLoadingProvider.createLoadingState(this._oDataProvider);
-	};
-
-	NumericHeader.prototype.onDataRequestComplete = function () {
-		this.fireEvent("_dataReady");
-		this._oLoadingProvider.setLoading(false);
-		this._oLoadingProvider.removeHeaderPlaceholder(this);
-	};
-
-	return NumericHeader;
-});
+        return NumericHeader;
+    },
+);
