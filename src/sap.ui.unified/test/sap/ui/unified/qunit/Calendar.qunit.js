@@ -1050,7 +1050,8 @@ sap.ui.define(
                             clientWidth: 156,
                             scrollWidth: 145,
                         },
-                    ], // array with values that will not fit inside "month boxes"
+                    ], // array with values that will not fit inside "month
+                    // boxes"
                     monthSpy = this.spy(month[0], "_isMonthNameLong");
 
                 // arrange

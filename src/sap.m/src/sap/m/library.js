@@ -4778,11 +4778,12 @@ sap.ui.define(
                 new EventProvider(),
                 /** @lends sap.m.URLHelper */ {
                     /**
-                     * Sanitizes the given telephone number and returns a URI using the
-                     * <code>tel:</code> scheme.
+                     * Sanitizes the given telephone number and returns a URI using
+                     * the <code>tel:</code> scheme.
                      *
                      * @param {string} [sTel] Telephone number
-                     * @returns {string} Telephone URI using the <code>tel:</code> scheme
+                     * @returns {string} Telephone URI using the <code>tel:</code>
+                     *     scheme
                      * @public
                      */
                     normalizeTel: function (sTel) {
@@ -4790,8 +4791,8 @@ sap.ui.define(
                     },
 
                     /**
-                     * Sanitizes the given telephone number and returns a URI using the
-                     * <code>sms:</code> scheme.
+                     * Sanitizes the given telephone number and returns a URI using
+                     * the <code>sms:</code> scheme.
                      *
                      * @param {string} [sTel] Telephone number
                      * @returns {string} SMS URI using the <code>sms:</code> scheme
@@ -4810,7 +4811,8 @@ sap.ui.define(
                      * @param {string} [sBody] Default message text
                      * @param {string} [sCC] Carbon Copy email address
                      * @param {string} [sBCC] Blind carbon copy email address
-                     * @returns {string} Email URI using the <code>mailto:</code> scheme
+                     * @returns {string} Email URI using the <code>mailto:</code>
+                     *     scheme
                      * @public
                      */
                     normalizeEmail: function (
@@ -4848,14 +4850,15 @@ sap.ui.define(
                      * This method fires "redirect" event before opening the URL.
                      *
                      * @param {string} sURL Uniform resource locator
-                     * @param {boolean} [bNewWindow] Opens URL in a new browser window or
-                     *     tab. Please note that, opening a new window/tab can be ignored
-                     *     by browsers (e.g. on Windows Phone) or by popup blockers.
-                     * NOTE: On Windows Phone the URL will be enforced to open in the same
-                     * window if opening in a new window/tab fails (because of a known
-                     * system restriction on cross-window communications). Use sap.m.Link
-                     * instead (with blank target) if you necessarily need to open URL in
-                     * a new window.
+                     * @param {boolean} [bNewWindow] Opens URL in a new browser window
+                     *     or tab. Please note that, opening a new window/tab can be
+                     *     ignored by browsers (e.g. on Windows Phone) or by popup
+                     *     blockers. NOTE: On Windows Phone the URL will be enforced
+                     *     to open in the same window if opening in a new window/tab
+                     *     fails (because of a known system restriction on
+                     *     cross-window communications). Use sap.m.Link instead (with
+                     *     blank target) if you necessarily need to open URL in a new
+                     *     window.
                      *
                      * @public
                      */
@@ -4892,10 +4895,10 @@ sap.ui.define(
                     /**
                      * Adds an event listener for the <code>redirect</code> event.
                      *
-                     * @param {function} fnFunction The function to call, when the event
-                     *     occurs.
-                     * @param {Object} [oListener] The object that wants to be notified
-                     *     when the event occurs.
+                     * @param {function} fnFunction The function to call, when the
+                     *     event occurs.
+                     * @param {Object} [oListener] The object that wants to be
+                     *     notified when the event occurs.
                      * @returns {sap.m.URLHelper} The URLHelper instance
                      * @public
                      */
@@ -4908,13 +4911,13 @@ sap.ui.define(
                     },
 
                     /**
-                     * Detach an already registered listener of the <code>redirect</code>
-                     * event.
+                     * Detach an already registered listener of the
+                     * <code>redirect</code> event.
                      *
-                     * @param {function} fnFunction The function to call, when the event
-                     *     occurs.
-                     * @param {Object} [oListener] The object, that wants to be notified,
-                     *     when the event occurs.
+                     * @param {function} fnFunction The function to call, when the
+                     *     event occurs.
+                     * @param {Object} [oListener] The object, that wants to be
+                     *     notified, when the event occurs.
                      * @returns {sap.m.URLHelper} The URLHelper instance
                      * @public
                      */
@@ -5031,19 +5034,19 @@ sap.ui.define(
              * @returns
              */
             /* currently not needed
-        isThemeBackgroundImageModified: function() {
-                var Parameters =
-        sap.ui.requireSync("sap/ui/core/theming/Parameters"); var sBgImgUrl =
-        Parameters.get('sapUiGlobalBackgroundImage'); // the global background
-        image from the theme if (sBgImgUrl && sBgImgUrl !== "''") { var
-        sBgImgUrlDefault = Parameters.get('sapUiGlobalBackgroundImageDefault');
-                        if (sBgImgUrl !== sBgImgUrlDefault) {
-                                return true;
-                        }
-                }
-                return false;
-        },
-        */
+    isThemeBackgroundImageModified: function() {
+            var Parameters =
+    sap.ui.requireSync("sap/ui/core/theming/Parameters"); var sBgImgUrl =
+    Parameters.get('sapUiGlobalBackgroundImage'); // the global background
+    image from the theme if (sBgImgUrl && sBgImgUrl !== "''") { var
+    sBgImgUrlDefault = Parameters.get('sapUiGlobalBackgroundImageDefault');
+                    if (sBgImgUrl !== sBgImgUrlDefault) {
+                            return true;
+                    }
+            }
+            return false;
+    },
+    */
 
             /**
              * Renders an HTML tag into the given RenderManager which carries the
@@ -5225,7 +5228,8 @@ sap.ui.define(
 
                     // Remove existing style classes which are contained in
                     // aCssClassesToRemove (the list of CSS classes allowed for
-                    //deletion) to have them updated later on Unfortunately, there is no
+                    // deletion) to have them updated later on Unfortunately, there is
+                    // no
                     // other way to do this but remove each class individually
                     if (aCssClassesToRemove) {
                         for (
@@ -5854,7 +5858,7 @@ sap.ui.define(
                 return "sapUiTableM";
             },
             bFinal: true /* This table helper wins, even when commons helper was
-                         set before */,
+                      set before */,
         });
 
         ObjectPath.set("sap.ui.layout.GridHelper", {

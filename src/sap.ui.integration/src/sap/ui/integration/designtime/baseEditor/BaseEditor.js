@@ -798,8 +798,8 @@ sap.ui.define(
                     ).map(function (oEditor) {
                         return {
                             editor: oEditor,
-                            // Keep the property name to identify independent editors
-                            // later
+                            // Keep the property name to identify independent
+                            // editors later
                             propertyName: sPropertyName,
                         };
                     });

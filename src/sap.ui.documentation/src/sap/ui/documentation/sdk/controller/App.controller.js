@@ -75,7 +75,7 @@ sap.ui.define(
                 "/neo-app.json" /* Load neo-app.json always from root URL */,
             sVersionOverviewJsonPath =
                 "/versionoverview.json" /* Load versionoverview.json always from
-                                          root URL */,
+                                        root URL */,
             ABOUT_TEXT = "about",
             FEEDBACK_TEXT = "feedback",
             CHANGE_VERSION_TEXT = "change_version",
@@ -207,8 +207,8 @@ sap.ui.define(
 
                     this._requestVersionInfo();
 
-                    // attach to the afterMasterClose event of the splitApp to be able to
-                    // toggle the hamburger button state on clicking anywhere
+                    // attach to the afterMasterClose event of the splitApp to be able
+                    // to toggle the hamburger button state on clicking anywhere
                     this.byId("splitApp").attachEvent(
                         "afterMasterClose",
                         function (oEvent) {
@@ -248,8 +248,8 @@ sap.ui.define(
 
                 onAfterRendering: function () {
                     // apply content density mode to the body tag
-                    // in order to get the controls in the static area styled correctly,
-                    // such as Dialog and Popover.
+                    // in order to get the controls in the static area styled
+                    // correctly, such as Dialog and Popover.
                     jQuery(document.body).addClass(
                         this.getOwnerComponent().getContentDensityClass(),
                     );
@@ -354,7 +354,8 @@ sap.ui.define(
                         return;
                     }
 
-                    /* on phone there is no master-detail pair, but a single navContainer
+                    /* on phone there is no master-detail pair, but a single
+                     * navContainer
                      * => so navigate within this navContainer: */
                     if (bPhone) {
                         if (bPressed) {
@@ -406,7 +407,8 @@ sap.ui.define(
                 },
 
                 /**
-                 * Creates configuration for the application regarding the URI input.
+                 * Creates configuration for the application regarding the URI
+                 * input.
                  * @private
                  */
                 _createConfigurationBasedOnURIInput: function () {
@@ -463,15 +465,15 @@ sap.ui.define(
                                 this._setSelectedLanguage(sCookieValue);
                             }
 
-                            // If we have available value for the given cookie we remove it
-                            // from the configuration array.
+                            // If we have available value for the given cookie we remove
+                            // it from the configuration array.
                             this._aConfiguration.splice(i, 1);
                             i--;
                         }
                     }
 
-                    // If we still have configurations which are not set by their cookie
-                    // values, we apply their default values.
+                    // If we still have configurations which are not set by their
+                    // cookie values, we apply their default values.
                     if (this._aConfiguration.length > 0) {
                         this._applyDefaultConfiguration();
                     }
@@ -481,8 +483,8 @@ sap.ui.define(
                  * Helper for function for preparing the data for the
                  * SupportedLangModel.
                  * @private
-                 * @returns {Array[Object]} Array of objects containg the needed data
-                 *     for the SupportedLangModel
+                 * @returns {Array[Object]} Array of objects containg the needed
+                 *     data for the SupportedLangModel
                  */
                 _prepareSupportedLangModelData: function () {
                     return Core.getConfiguration()
@@ -577,8 +579,8 @@ sap.ui.define(
                             controller: this,
                         }).then(
                             function (oDialog) {
-                                // connect dialog to the root view of this component (models,
-                                // lifecycle)
+                                // connect dialog to the root view of this component
+                                // (models, lifecycle)
                                 this._oView.addDependent(oDialog);
                                 this._oSettingsDialog = oDialog;
                                 Core.byId("LanguageSelect").setSelectedKey(
@@ -869,8 +871,8 @@ sap.ui.define(
                 },
 
                 /**
-                 * Custom comparison function, which is used when sorting group titles
-                 * by minor version in the change version dialog
+                 * Custom comparison function, which is used when sorting group
+                 * titles by minor version in the change version dialog
                  *
                  * @param sGroupTitleA
                  * @param sGroupTitleB
@@ -1288,9 +1290,9 @@ sap.ui.define(
                         this._selectHeader.setVisible(bPhoneSize);
                     }
 
-                    // The select should be first set to visible on phone size, and after
-                    // that set to false if search is opened for correct calculation of
-                    // the search width.
+                    // The select should be first set to visible on phone size, and
+                    // after that set to false if search is opened for correct
+                    // calculation of the search width.
                     if (bSearchMode) {
                         this._selectHeader.setVisible(false);
                     }
@@ -1413,9 +1415,9 @@ sap.ui.define(
 
                     aRoutes = oNeoAppJson.routes;
 
-                    // Current version would be displayed for a second time as the last
-                    // element, therefore we should skip it to avoid duplicate items in
-                    // the dialog.
+                    // Current version would be displayed for a second time as the
+                    // last element, therefore we should skip it to avoid duplicate
+                    // items in the dialog.
                     aRoutes.pop();
 
                     // Store needed data

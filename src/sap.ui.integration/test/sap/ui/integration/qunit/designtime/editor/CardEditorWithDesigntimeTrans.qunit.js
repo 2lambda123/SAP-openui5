@@ -107,8 +107,9 @@ sap.ui.define(
                         return new Promise(
                             function (resolve, reject) {
                                 this.oCardEditor = createEditor();
-                                // set language to de_DE the language does not exist
-                                // we expect fallback english to be shown from
+                                // set language to de_DE the language
+                                // does not exist we expect fallback
+                                // english to be shown from
                                 // i18n_en.properties
                                 Core.getConfiguration().setLanguage("de-DE");
                                 assert.ok(
@@ -163,7 +164,8 @@ sap.ui.define(
                                                             "String 1 English",
                                                         "Field1: String 1 English",
                                                     );
-                                                    // check the translated description
+                                                    // check the translated
+                                                    // description
                                                     var oIcon =
                                                         oLabel1.getDependents()[0];
                                                     oIcon.getDomRef().focus();
@@ -212,7 +214,8 @@ sap.ui.define(
                                                             "String 2 English",
                                                         "Field2: String 2 English",
                                                     );
-                                                    // check the translated description
+                                                    // check the translated
+                                                    // description
                                                     var oIcon =
                                                         oLabel2.getDependents()[0];
                                                     oIcon.getDomRef().focus();
@@ -261,7 +264,8 @@ sap.ui.define(
                                                             "String 3 English",
                                                         "Field2: String 3 English",
                                                     );
-                                                    // check the translated description
+                                                    // check the translated
+                                                    // description
                                                     var oIcon =
                                                         oLabel3.getDependents()[0];
                                                     oIcon.getDomRef().focus();
@@ -298,8 +302,9 @@ sap.ui.define(
                                 return new Promise(
                                     function (resolve, reject) {
                                         this.oCardEditor = createEditor();
-                                        // set language to en_US the language does not exist
-                                        // we expect US english to be shown from
+                                        // set language to en_US the language
+                                        // does not exist we expect US english
+                                        // to be shown from
                                         // i18n_en_US.properties
                                         Core.getConfiguration().setLanguage(
                                             "en-US",
@@ -354,7 +359,9 @@ sap.ui.define(
                                                                     "String 1 US English",
                                                                 "Field1: String 1 US English",
                                                             );
-                                                            // check the translated description
+                                                            // check the
+                                                            // translated
+                                                            // description
                                                             var oIcon =
                                                                 oLabel1.getDependents()[0];
                                                             oIcon
@@ -405,7 +412,9 @@ sap.ui.define(
                                                                     "String 2 US English",
                                                                 "Field2: String 2 US English",
                                                             );
-                                                            // check the translated description
+                                                            // check the
+                                                            // translated
+                                                            // description
                                                             var oIcon =
                                                                 oLabel2.getDependents()[0];
                                                             oIcon
@@ -456,7 +465,9 @@ sap.ui.define(
                                                                     "String 3 US English",
                                                                 "Field2: String 3 US English",
                                                             );
-                                                            // check the translated description
+                                                            // check the
+                                                            // translated
+                                                            // description
                                                             var oIcon =
                                                                 oLabel3.getDependents()[0];
                                                             oIcon
@@ -516,8 +527,9 @@ sap.ui.define(
                         return new Promise(
                             function (resolve, reject) {
                                 this.oCardEditor = createEditor();
-                                // set language to de_DE the language does not exist
-                                // we expect fallback english to be shown from
+                                // set language to de_DE the language
+                                // does not exist we expect fallback
+                                // english to be shown from
                                 // i18n_en.properties
                                 Core.getConfiguration().setLanguage("de-DE");
                                 assert.ok(
@@ -572,7 +584,8 @@ sap.ui.define(
                                                             "String 1 English",
                                                         "Field1: String 1 English",
                                                     );
-                                                    // check the translated description
+                                                    // check the translated
+                                                    // description
                                                     var oIcon =
                                                         oLabel1.getDependents()[0];
                                                     oIcon.getDomRef().focus();
@@ -621,7 +634,8 @@ sap.ui.define(
                                                             "String 2 English",
                                                         "Field2: String 2 English",
                                                     );
-                                                    // check the translated description
+                                                    // check the translated
+                                                    // description
                                                     var oIcon =
                                                         oLabel2.getDependents()[0];
                                                     oIcon.getDomRef().focus();
@@ -670,7 +684,8 @@ sap.ui.define(
                                                             "String 3 English",
                                                         "Field2: String 3 English",
                                                     );
-                                                    // check the translated description
+                                                    // check the translated
+                                                    // description
                                                     var oIcon =
                                                         oLabel3.getDependents()[0];
                                                     oIcon.getDomRef().focus();
@@ -707,8 +722,9 @@ sap.ui.define(
                                 return new Promise(
                                     function (resolve, reject) {
                                         this.oCardEditor = createEditor();
-                                        // set language to en_US the language does not exist
-                                        // we expect US english to be shown from
+                                        // set language to en_US the language
+                                        // does not exist we expect US english
+                                        // to be shown from
                                         // i18n_en_US.properties
                                         Core.getConfiguration().setLanguage(
                                             "en-US",
@@ -763,7 +779,9 @@ sap.ui.define(
                                                                     "String 1 US English",
                                                                 "Field1: String 1 US English",
                                                             );
-                                                            // check the translated description
+                                                            // check the
+                                                            // translated
+                                                            // description
                                                             var oIcon =
                                                                 oLabel1.getDependents()[0];
                                                             oIcon
@@ -814,7 +832,9 @@ sap.ui.define(
                                                                     "String 2 US English",
                                                                 "Field2: String 2 US English",
                                                             );
-                                                            // check the translated description
+                                                            // check the
+                                                            // translated
+                                                            // description
                                                             var oIcon =
                                                                 oLabel2.getDependents()[0];
                                                             oIcon
@@ -865,7 +885,9 @@ sap.ui.define(
                                                                     "String 3 US English",
                                                                 "Field2: String 3 US English",
                                                             );
-                                                            // check the translated description
+                                                            // check the
+                                                            // translated
+                                                            // description
                                                             var oIcon =
                                                                 oLabel3.getDependents()[0];
                                                             oIcon
@@ -925,9 +947,9 @@ sap.ui.define(
                         return new Promise(
                             function (resolve, reject) {
                                 this.oCardEditor = createEditor();
-                                // set language to de_DE the language does not exist we
-                                // expect fallback english to be shown from
-                                // i18n_en.properties
+                                // set language to de_DE the language does not
+                                // exist we expect fallback english to be shown
+                                // from i18n_en.properties
                                 Core.getConfiguration().setLanguage("de-DE");
                                 assert.ok(
                                     true,
@@ -1176,9 +1198,9 @@ sap.ui.define(
                         return new Promise(
                             function (resolve, reject) {
                                 this.oCardEditor = createEditor();
-                                // set language to de_DE the language does not exist we
-                                // expect fallback english to be shown from
-                                // i18n_en.properties
+                                // set language to de_DE the language does not
+                                // exist we expect fallback english to be shown
+                                // from i18n_en.properties
                                 Core.getConfiguration().setLanguage("de-DE");
                                 assert.ok(
                                     true,
@@ -1426,9 +1448,9 @@ sap.ui.define(
                         return new Promise(
                             function (resolve, reject) {
                                 this.oCardEditor = createEditor();
-                                // set language to de_DE the language does not exist we
-                                // expect fallback english to be shown from
-                                // i18n_en.properties
+                                // set language to de_DE the language does not
+                                // exist we expect fallback english to be shown
+                                // from i18n_en.properties
                                 Core.getConfiguration().setLanguage("de-DE");
                                 assert.ok(
                                     true,
@@ -1682,9 +1704,9 @@ sap.ui.define(
                         return new Promise(
                             function (resolve, reject) {
                                 this.oCardEditor = createEditor();
-                                // set language to de_DE the language does not exist we
-                                // expect fallback english to be shown from
-                                // i18n_en.properties
+                                // set language to de_DE the language does not
+                                // exist we expect fallback english to be shown
+                                // from i18n_en.properties
                                 Core.getConfiguration().setLanguage("de-DE");
                                 assert.ok(
                                     true,
@@ -1949,9 +1971,9 @@ sap.ui.define(
                         return new Promise(
                             function (resolve, reject) {
                                 this.oCardEditor = createEditor();
-                                // set language to de_DE the language does not exist we
-                                // expect fallback english to be shown from
-                                // i18n_en.properties
+                                // set language to de_DE the language does not
+                                // exist we expect fallback english to be shown
+                                // from i18n_en.properties
                                 Core.getConfiguration().setLanguage("de-DE");
                                 assert.ok(
                                     true,
@@ -2205,9 +2227,9 @@ sap.ui.define(
                         return new Promise(
                             function (resolve, reject) {
                                 this.oCardEditor = createEditor();
-                                // set language to de_DE the language does not exist we
-                                // expect fallback english to be shown from
-                                // i18n_en.properties
+                                // set language to de_DE the language does not
+                                // exist we expect fallback english to be shown
+                                // from i18n_en.properties
                                 Core.getConfiguration().setLanguage("de-DE");
                                 assert.ok(
                                     true,
@@ -2458,9 +2480,9 @@ sap.ui.define(
                         return new Promise(
                             function (resolve, reject) {
                                 this.oCardEditor = createEditor();
-                                // set language to de_DE the language does not exist we
-                                // expect fallback english to be shown from
-                                // i18n_en.properties
+                                // set language to de_DE the language does not
+                                // exist we expect fallback english to be shown
+                                // from i18n_en.properties
                                 Core.getConfiguration().setLanguage("de-DE");
                                 assert.ok(
                                     true,
@@ -2720,9 +2742,9 @@ sap.ui.define(
                         return new Promise(
                             function (resolve, reject) {
                                 this.oCardEditor = createEditor();
-                                // set language to de_DE the language does not exist we
-                                // expect fallback english to be shown from
-                                // i18n_en.properties
+                                // set language to de_DE the language does not
+                                // exist we expect fallback english to be shown
+                                // from i18n_en.properties
                                 Core.getConfiguration().setLanguage("de-DE");
                                 assert.ok(
                                     true,
@@ -3058,9 +3080,9 @@ sap.ui.define(
                                         src: "./img/preview.png",
                                     },
                                 });
-                                // set language to de_DE the language does not exist we
-                                // expect fallback english to be shown from
-                                // i18n_en.properties
+                                // set language to de_DE the language does not
+                                // exist we expect fallback english to be shown
+                                // from i18n_en.properties
                                 Core.getConfiguration().setLanguage("de-DE");
                                 assert.ok(
                                     true,

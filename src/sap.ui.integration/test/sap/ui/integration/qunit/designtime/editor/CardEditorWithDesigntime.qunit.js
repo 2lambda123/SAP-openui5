@@ -3871,7 +3871,8 @@ sap.ui.define(
                                         );
                                         // force rendering
                                         Core.applyChanges();
-                                        // check the change event handling of the field
+                                        // check the change event handling of the
+                                        // field
                                         oField
                                             .getAggregation("_field")
                                             .setDateValue(new Date());
@@ -4033,7 +4034,8 @@ sap.ui.define(
                                         );
                                         // force rendering
                                         Core.applyChanges();
-                                        // check the change event handling of the field
+                                        // check the change event handling of the
+                                        // field
                                         oField
                                             .getAggregation("_field")
                                             .setDateValue(new Date());
@@ -5223,12 +5225,12 @@ sap.ui.define(
                 // "configuration": { "parameters": { "stringParameter": {} } }
                 // } } }); 	return new Promise(function (resolve, reject) {
                 // 		this.oCardEditor.attachReady(function () {
-                // 			assert.ok(this.oCardEditor.isReady(), "Card
-                // Editor is ready");
+                // 			assert.ok(this.oCardEditor.isReady(),
+                // "Card Editor is ready");
                 // 			sap.ui.getCore().applyTheme("sap_fiori_3_dark");
                 // 			sap.ui.getCore().attachThemeChanged(function
-                // () { 				sap.ui.getCore().attachThemeChanged(function () {
-                // 					resolve();
+                // () {
+                // sap.ui.getCore().attachThemeChanged(function () { 					resolve();
                 // 				});
                 // 				sap.ui.getCore().applyTheme("sap_fiori_3");
                 // 			});
@@ -5246,11 +5248,12 @@ sap.ui.define(
                 // "configuration": { "parameters": { "stringParameter": {} } }
                 // } } }); 	return new Promise(function (resolve, reject) {
                 // 		this.oCardEditor.attachReady(function () {
-                // 			assert.ok(this.oCardEditor.isReady(), "Card
-                // Editor is ready");
+                // 			assert.ok(this.oCardEditor.isReady(),
+                // "Card Editor is ready");
                 // 			sap.ui.getCore().applyTheme("sap_fiori_3");
                 // 			sap.ui.getCore().attachThemeChanged(function
-                // () { 				sap.ui.getCore().attachThemeChanged(function () {
+                // () {
+                // sap.ui.getCore().attachThemeChanged(function () {
                 // 					sap.ui.getCore().applyTheme("sap_fiori_3");
                 // 					resolve();
                 // 				});
@@ -9475,8 +9478,8 @@ sap.ui.define(
                                                 .getBeginButton()
                                                 .firePress();
                                             setTimeout(function () {
-                                                // this is delayed not to give time to show the
-                                                // tokenizer
+                                                // this is delayed not to give time to show
+                                                // the tokenizer
                                                 assert.ok(
                                                     oButton.getIcon() ===
                                                         "sap-icon://display-more",
@@ -9674,8 +9677,8 @@ sap.ui.define(
                                                 .getItems()[1]
                                                 .firePress();
                                             setTimeout(function () {
-                                                // this is delayed not to give time to show the
-                                                // tokenizer
+                                                // this is delayed not to give time to show
+                                                // the tokenizer
                                                 assert.ok(
                                                     oButton.getIcon() ===
                                                         "sap-icon://display-more",
@@ -9810,8 +9813,8 @@ sap.ui.define(
                                                     .getItems()[2];
                                             resetButton.firePress();
                                             setTimeout(function () {
-                                                // this is delayed not to give time to show the
-                                                // tokenizer
+                                                // this is delayed not to give time to show
+                                                // the tokenizer
                                                 assert.ok(
                                                     oField
                                                         .getAggregation(
@@ -9950,8 +9953,8 @@ sap.ui.define(
                                                     .getItems()[2];
                                             resetButton.firePress();
                                             setTimeout(function () {
-                                                // this is delayed not to give time to show the
-                                                // tokenizer
+                                                // this is delayed not to give time to show
+                                                // the tokenizer
                                                 assert.ok(
                                                     oField
                                                         .getAggregation(
@@ -10148,8 +10151,8 @@ sap.ui.define(
                                                 .getBeginButton()
                                                 .firePress();
                                             setTimeout(function () {
-                                                // this is delayed not to give time to show the
-                                                // tokenizer
+                                                // this is delayed not to give time to show
+                                                // the tokenizer
                                                 assert.ok(
                                                     oButton.getIcon() ===
                                                         "sap-icon://enter-more",
@@ -10353,8 +10356,8 @@ sap.ui.define(
                                                 .getBeginButton()
                                                 .firePress();
                                             setTimeout(function () {
-                                                // this is delayed not to give time to show the
-                                                // tokenizer
+                                                // this is delayed not to give time to show
+                                                // the tokenizer
                                                 assert.ok(
                                                     oButton.getIcon() ===
                                                         "sap-icon://enter-more",
@@ -11806,7 +11809,8 @@ sap.ui.define(
                                         );
                                         setTimeout(
                                             function () {
-                                                // should resolve the destination within 1000ms
+                                                // should resolve the destination within
+                                                // 1000ms
                                                 assert.ok(
                                                     this.oCardEditor
                                                         .getAggregation(

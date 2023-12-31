@@ -159,10 +159,10 @@ sap.ui.define(
                         },
 
                         //				/**
-                        //				 * Icon to be displayed as a graphical
-                        //element before the field.
-                        //				 * This can be an image or an icon
-                        //from the icon font.
+                        //				 * Icon to be displayed as a
+                        //graphical element before the field.
+                        //				 * This can be an image or an
+                        //icon from the icon font.
                         //				 */
                         //				icon: {
                         //					type: "sap.ui.core.URI",
@@ -1885,9 +1885,10 @@ sap.ui.define(
                 // let the internal control be created on rendering
             } else if (sMutation === "insert") {
                 //			if (!oContent.isA("sap.ui.core.IFormContent")) {
-                //				// TODO: allow different content than allowed in
-                //Form? 				throw new Error(oContent + " is not a valid content! Only use
-                //valid content in " + this);
+                //				// TODO: allow different content than allowed
+                //in
+                // Form? 				throw new Error(oContent + " is not a valid
+                // content! Only use valid content in " + this);
                 //			}
                 _modifyKeyboardHandler.call(this, oContent, true);
                 _attachContentHandlers.call(this, oContent);
@@ -2904,8 +2905,8 @@ sap.ui.define(
                         oProperties,
                     );
                     mDefaultHelps[sType].control = oFieldHelp;
-                    //				this.addDependent(oFieldHelp); // TODO: where to add to
-                    //control tree
+                    //				this.addDependent(oFieldHelp); // TODO: where to add
+                    //to control tree
                     oFieldHelp.connect(this); // to forward dataType
                     if (mDefaultHelps[sType].resolve) {
                         mDefaultHelps[sType].resolve();
@@ -3132,8 +3133,9 @@ sap.ui.define(
                                 return this._oNavigateCondition;
                             } else if (vValue === "" && iMaxConditions !== 1) {
                                 // in multivalue case an empty input don't changes the
-                                // conditions and must not be validated with the data type
-                                // this happens after an invalid input was just cleared
+                                // conditions and must not be validated with the data
+                                // type this happens after an invalid input was just
+                                // cleared
                                 return null;
                             } else {
                                 oConditionType = _getConditionType.call(this);
@@ -3173,7 +3175,8 @@ sap.ui.define(
                                 oSource,
                                 oMyChange || oChange,
                             );
-                            bChanged = bChanged || bChangeIfNotChanged; // in SearchField fire change if
+                            bChanged = bChanged || bChangeIfNotChanged; // in SearchField
+                            // fire change if
                             // value not changed
                             return oCondition;
                         }.bind(this),
@@ -3988,7 +3991,7 @@ sap.ui.define(
 
             //		// also in display mode to get right text
             //		_handleConditionsChange.call(this,
-            //this.getConditions());
+            // this.getConditions());
             if (
                 !isEditing &&
                 !this._bPendingConditionUpdate &&
@@ -4347,8 +4350,8 @@ sap.ui.define(
                                 this._bParseError = false;
                                 var aConditions = this.getConditions();
                                 if (deepEqual(vResult, aConditions)) {
-                                    // parsingResult is same as current value -> no update will
-                                    // happen
+                                    // parsingResult is same as current value -> no update
+                                    // will happen
                                     _resolveAsyncChange.call(this, oChange);
                                     _removeAsyncChange.call(this, oChange);
                                 } else {

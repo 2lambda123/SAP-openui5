@@ -98,8 +98,8 @@ sap.ui.define(
                 },
 
                 /**
-                 * Syncs CodeEditor & CardEditor. Updates the manifest of the card, if
-                 * autoRun is enabled. Validates the schema, if enabled.
+                 * Syncs CodeEditor & CardEditor. Updates the manifest of the card,
+                 * if autoRun is enabled. Validates the schema, if enabled.
                  * @param {string} sValue Current value of the CodeEditor
                  * @param {boolean} bRerender If in rerender model
                  */
@@ -140,7 +140,8 @@ sap.ui.define(
                 },
 
                 /**
-                 * Syncs CodeEditor & CardEditor. Updates the designtime of the card.
+                 * Syncs CodeEditor & CardEditor. Updates the designtime of the
+                 * card.
                  * @param {string} sValue Current designtime value of the CodeEditor
                  * @param {boolean} bRerender If in rerender model
                  */
@@ -494,8 +495,8 @@ sap.ui.define(
                             exploreNavigationModel.getProperty("/navigation"),
                         oFoundSample;
 
-                    // loops through all samples in the navigation and gets the current
-                    // one
+                    // loops through all samples in the navigation and gets the
+                    // current one
                     aSections.some(function (oSection) {
                         oSection.items.some(function (oSample) {
                             if (oSample.key === sSampleKey) {
@@ -638,7 +639,8 @@ sap.ui.define(
                                 function (oCard) {
                                     this.byId("cardContainer").addItem(oCard);
 
-                                    // This catches any error that was produced by the card
+                                    // This catches any error that was produced by the
+                                    // card
                                     oCard.attachEvent(
                                         "_error",
                                         this._onCardError,
@@ -714,7 +716,8 @@ sap.ui.define(
                         var oFrame = oFrameWrapperEl.$().find("iframe")[0];
 
                         if (oFrame.contentWindow) {
-                            // send value of the edited manifest to the card inside the iframe
+                            // send value of the edited manifest to the card inside the
+                            // iframe
                             oFrame.contentWindow.postMessage(
                                 { manifest: sValue },
                                 "*",
@@ -788,7 +791,8 @@ sap.ui.define(
                 },
 
                 /**
-                 * Validates the current [sap.card] manifest and shows errors, if any.
+                 * Validates the current [sap.card] manifest and shows errors, if
+                 * any.
                  */
                 validateManifest: function () {
                     this._fileEditor.validateManifest();

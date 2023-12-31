@@ -383,8 +383,8 @@ sap.ui.define(
             }
 
             /* The select change event is fired every time a selection is made, in
-         Icon mode (in which we're using it) the user doesn't see this selection
-         change and we shouldn't act on it */
+     Icon mode (in which we're using it) the user doesn't see this selection
+     change and we shouldn't act on it */
             if (!this._getSelect().isOpen()) {
                 return;
             }

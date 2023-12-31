@@ -113,7 +113,8 @@ sap.ui.define(
                         "Load more trigger is visible",
                     );
 
-                    // act + assert loading is finished case for growingScrollToLoad=false
+                    // act + assert loading is finished case for
+                    // growingScrollToLoad=false
                     oGrowingDelegate._updateTrigger(false);
                     assert.ok(
                         !oTrigger.getBusy(),
@@ -148,7 +149,8 @@ sap.ui.define(
                         "Load more trigger is not visible",
                     );
 
-                    // act + assert loading is started case for growingScrollToLoad=true
+                    // act + assert loading is started case for
+                    // growingScrollToLoad=true
                     oGrowingDelegate._updateTrigger(true);
                     assert.ok(
                         oTrigger.getBusy(),
@@ -179,7 +181,8 @@ sap.ui.define(
                         "Load more trigger is visible",
                     );
 
-                    // act + assert loading is finished case for growingScrollToLoad=true
+                    // act + assert loading is finished case for
+                    // growingScrollToLoad=true
                     oGrowingDelegate._updateTrigger(false);
                     assert.ok(
                         !oTrigger.getBusy(),

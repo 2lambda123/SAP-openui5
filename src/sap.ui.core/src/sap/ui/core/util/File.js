@@ -28,11 +28,12 @@ sap.ui.define(
              * <p><b>macOS Safari < 10.1 / iOS Safari</b><br>
              * A new window or tab is opened.
              * In macOS, the user has to save the file manually (by using key
-             * combination "CMD + S", choosing the page source format, and specifying a
-             * file name). In iOS, the content can be opened in another app (Mail,
-             * Notes, ...) or can be copied to the clipboard. If a pop-up blocker
-             * prevents this action, an error will be thrown which can be used to notify
-             * the user that the pop-up blocker needs to be disabled.</p>
+             * combination "CMD + S", choosing the page source format, and
+             * specifying a file name). In iOS, the content can be opened in another
+             * app (Mail, Notes, ...) or can be copied to the clipboard. If a pop-up
+             * blocker prevents this action, an error will be thrown which can be
+             * used to notify the user that the pop-up blocker needs to be
+             * disabled.</p>
              *
              * <p><b>Android Browser</b><br>
              * Not supported</p>
@@ -45,11 +46,11 @@ sap.ui.define(
              * @param {string} sFileExtension file extension
              * @param {string} sMimeType file mime-type
              * @param {string} sCharset file charset
-             * @param {boolean} [bByteOrderMark] Whether to prepend a unicode byte order
-             *     mark (only applies for utf-8 charset).
-             *                                   Default is <code>false</code> except
-             * when <code>sFileExtension</code> === 'csv' and <code>sCharset</code> ===
-             * 'utf-8' it is <code>true</code> (compatibility reasons).
+             * @param {boolean} [bByteOrderMark] Whether to prepend a unicode byte
+             *     order mark (only applies for utf-8 charset). Default is
+             *     <code>false</code> except when <code>sFileExtension</code> ===
+             *     'csv' and <code>sCharset</code> === 'utf-8' it is
+             *     <code>true</code> (compatibility reasons).
              *
              * @public
              */
@@ -64,8 +65,8 @@ sap.ui.define(
                 var sFullFileName = sFileName + "." + sFileExtension;
 
                 // Compatibility handling:
-                // Add Byte Order Mark by default for utf-8 / csv to not break existing
-                // scenarios
+                // Add Byte Order Mark by default for utf-8 / csv to not break
+                // existing scenarios
                 if (
                     typeof bByteOrderMark === "undefined" &&
                     sCharset === "utf-8" &&

@@ -117,8 +117,8 @@ sap.ui.define(
         var CardEditor = Control.extend(
             "sap.ui.integration.designtime.editor.CardEditor",
             /**
-             @lends sap.ui.integration.designtime.editor.CardEditor.prototype
-           */
+           @lends sap.ui.integration.designtime.editor.CardEditor.prototype
+         */
             {
                 metadata: {
                     library: "sap.ui.integration",
@@ -613,7 +613,8 @@ sap.ui.define(
                     );
                     this.setModel(this._settingsModel, "currentSettings");
                     this.setModel(this._settingsModel, "items");
-                    this._applyDesigntimeLayers(); // changes done from admin to content
+                    this._applyDesigntimeLayers(); // changes done from admin to
+                    // content
                     // on the dt values
                     this._requireFields().then(
                         function () {
@@ -1720,7 +1721,8 @@ sap.ui.define(
                             oHost = this._oEditorCard.getHostInstance();
                         oItems[n + ".destinaton"] = merge(
                             {
-                                manifestpath: sBasePath + n + "/name", // destination points to name not value
+                                manifestpath: sBasePath + n + "/name", // destination points to
+                                // name not value
                                 visible: true,
                                 type: "destination",
                                 editable: true,

@@ -308,8 +308,8 @@ sap.ui.define(
                                 onAfterRendering: function (oEvent) {
                                     var $oTrigger = this._oTrigger.$();
                                     // aria-selected is added as the CustomListItem
-                                    // type="Active" aria-selected should be removed as it
-                                    // is not allowed with role="button"
+                                    // type="Active" aria-selected should be removed
+                                    // as it is not allowed with role="button"
                                     $oTrigger.removeAttr("aria-selected");
                                     $oTrigger.attr({
                                         tabindex: 0,
