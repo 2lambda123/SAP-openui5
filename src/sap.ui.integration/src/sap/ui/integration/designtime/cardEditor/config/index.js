@@ -6,14 +6,14 @@
  */
 sap.ui.define(
     [
-        "sap/ui/integration/designtime/cardEditor/config/AppConfig",
-        "sap/ui/integration/designtime/cardEditor/config/HeaderConfig",
-        "sap/ui/integration/designtime/cardEditor/config/ListCardConfig",
-        "sap/ui/integration/designtime/cardEditor/config/ObjectCardConfig",
-        "sap/ui/integration/designtime/cardEditor/config/TableCardConfig",
-        "sap/ui/integration/designtime/cardEditor/config/generateDataConfig",
+      "sap/ui/integration/designtime/cardEditor/config/AppConfig",
+      "sap/ui/integration/designtime/cardEditor/config/HeaderConfig",
+      "sap/ui/integration/designtime/cardEditor/config/ListCardConfig",
+      "sap/ui/integration/designtime/cardEditor/config/ObjectCardConfig",
+      "sap/ui/integration/designtime/cardEditor/config/TableCardConfig",
+      "sap/ui/integration/designtime/cardEditor/config/generateDataConfig",
     ],
-    function (
+    function(
         AppConfig,
         HeaderConfig,
         ListCardConfig,
@@ -21,9 +21,9 @@ sap.ui.define(
         TableCardConfig,
         generateDataConfig,
     ) {
-        "use strict";
+      "use strict";
 
-        return {
+      return {
             context: "sap.card",
             layout: {
                 form: {
