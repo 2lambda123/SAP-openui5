@@ -1,23 +1,23 @@
 {
-    "1.85.0": {
-        "date": "December 2020",
-        "notes": [
-            {
-                "id": "c4208409281eb16bb8711685898b7083cd26bc18",
-                "type": "FIX",
-                "text": " Integration Card: Empty header is no longer created",
-                "references": [
-                    {
-                        "type": "BCP",
-                        "reference": "2070502593"
-                    }
-                ]
-            },
-            {
-                "id": "a2c17eca2248bce61da987ce98e7dc2b5ed0c774",
-                "type": "FIX",
-                "text": "[INTERNAL] sap.ui.integration Card Editor"
-            }
+  "1.85.0": {
+    "date": "December 2020",
+    "notes": [
+      {
+        "id": "c4208409281eb16bb8711685898b7083cd26bc18",
+        "type": "FIX",
+        "text": " Integration Card: Empty header is no longer created",
+        "references": [
+          {
+            "type": "BCP",
+            "reference": "2070502593"
+          }
         ]
-    }
+      },
+      {
+        "id": "a2c17eca2248bce61da987ce98e7dc2b5ed0c774",
+        "type": "FIX",
+        "text": "[INTERNAL] sap.ui.integration Card Editor"
+      }
+    ]
+  }
 }
