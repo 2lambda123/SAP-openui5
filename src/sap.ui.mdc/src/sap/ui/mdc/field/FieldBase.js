@@ -2906,7 +2906,7 @@ sap.ui.define(
                     );
                     mDefaultHelps[sType].control = oFieldHelp;
                     //				this.addDependent(oFieldHelp); // TODO:
-                    //where to add to control tree
+                    // where to add to control tree
                     oFieldHelp.connect(this); // to forward dataType
                     if (mDefaultHelps[sType].resolve) {
                         mDefaultHelps[sType].resolve();

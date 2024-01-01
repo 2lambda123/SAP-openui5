@@ -106,23 +106,23 @@ sap.ui.define(
             // var oTemplate = oConfigValue.value.template || vItemMetadata.template
             // || {};
             /*
-        if (sType === "array") {
-            if (deepEqual(oTemplate, {})) {
-                        oTemplate = {
-                                "key": {
-                                        "label": "Key",
-                                        "type": "string",
-                                        "path": "key"
-                                },
-                                "text": {
-                                        "label": "Text",
-                                        "type": "string",
-                                        "path": "text"
-                                }
-                        };
-                }
-                oMapItemConfig[2].allowAddAndRemove = false;
-        }*/
+    if (sType === "array") {
+        if (deepEqual(oTemplate, {})) {
+                    oTemplate = {
+                            "key": {
+                                    "label": "Key",
+                                    "type": "string",
+                                    "path": "key"
+                            },
+                            "text": {
+                                    "label": "Text",
+                                    "type": "string",
+                                    "path": "text"
+                            }
+                    };
+            }
+            oMapItemConfig[2].allowAddAndRemove = false;
+    }*/
             oMapItemConfig[2].visible = !(
                 sType === "group" || sType === "array"
             );
