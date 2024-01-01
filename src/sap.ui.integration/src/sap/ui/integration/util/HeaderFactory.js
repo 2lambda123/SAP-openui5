@@ -3,14 +3,14 @@
  */
 sap.ui.define(
     [
-        "./BaseFactory",
-        "./CardActions",
-        "sap/ui/integration/library",
-        "sap/ui/integration/cards/NumericHeader",
-        "sap/ui/integration/cards/Header",
-        "sap/base/strings/formatMessage",
+      "./BaseFactory",
+      "./CardActions",
+      "sap/ui/integration/library",
+      "sap/ui/integration/cards/NumericHeader",
+      "sap/ui/integration/cards/Header",
+      "sap/base/strings/formatMessage",
     ],
-    function (
+    function(
         BaseFactory,
         CardActions,
         library,
@@ -18,128 +18,120 @@ sap.ui.define(
         Header,
         formatMessage,
     ) {
-        "use strict";
+      "use strict";
 
-        var AreaType = library.AreaType;
+      var AreaType = library.AreaType;
 
-        /**
-         * Binds the statusText of a header to the provided format configuration.
-         *
-         * @private
-         * @param {Object} mFormat The formatting configuration.
-         * @param {sap.f.cards.IHeader} oHeader The header instance.
-         */
-        function bindStatusText(mFormat, oHeader) {
-            if (
-                mFormat.parts &&
-                mFormat.translationKey &&
-                mFormat.parts.length === 2
-            ) {
-                var oBindingInfo = {
-                    parts: [
-                        mFormat.translationKey,
-                        mFormat.parts[0].toString(),
-                        mFormat.parts[1].toString(),
-                    ],
-                    formatter: function (sText, vParam1, vParam2) {
-                        var sParam1 = vParam1 || mFormat.parts[0];
-                        var sParam2 = vParam2 || mFormat.parts[1];
+      /**
+       * Binds the statusText of a header to the provided format configuration.
+       *
+       * @private
+       * @param {Object} mFormat The formatting configuration.
+       * @param {sap.f.cards.IHeader} oHeader The header instance.
+       */
+      function bindStatusText(mFormat, oHeader) {
+        if (mFormat.parts && mFormat.translationKey &&
+            mFormat.parts.length === 2) {
+          var oBindingInfo = {
+            parts : [
+              mFormat.translationKey,
+              mFormat.parts[0].toString(),
+              mFormat.parts[1].toString(),
+            ],
+            formatter : function(sText, vParam1, vParam2) {
+              var sParam1 = vParam1 || mFormat.parts[0];
+              var sParam2 = vParam2 || mFormat.parts[1];
 
-                        if (Array.isArray(vParam1)) {
-                            sParam1 = vParam1.length;
-                        }
-                        if (Array.isArray(vParam2)) {
-                            sParam2 = vParam2.length;
-                        }
+              if (Array.isArray(vParam1)) {
+                sParam1 = vParam1.length;
+              }
+              if (Array.isArray(vParam2)) {
+                sParam2 = vParam2.length;
+              }
 
-                        var iParam1 = parseFloat(sParam1) || 0;
-                        var iParam2 = parseFloat(sParam2) || 0;
+              var iParam1 = parseFloat(sParam1) || 0;
+              var iParam2 = parseFloat(sParam2) || 0;
 
-                        return formatMessage(sText, [iParam1, iParam2]);
-                    },
-                };
+              return formatMessage(sText, [ iParam1, iParam2 ]);
+            },
+          };
 
-                oHeader.bindProperty("statusText", oBindingInfo);
-            }
+          oHeader.bindProperty("statusText", oBindingInfo);
         }
+      }
 
-        /**
-         * Constructor for a new <code>HeaderFactory</code>.
-         *
-         * @class
-         *
-         * @extends sap.ui.integration.util.BaseFactory
-         *
-         * @author SAP SE
-         * @version ${version}
-         *
-         * @constructor
-         * @private
-         * @alias sap.ui.integration.util.HeaderFactory
-         */
-        var HeaderFactory = BaseFactory.extend(
-            "sap.ui.integration.util.HeaderFactory",
+      /**
+       * Constructor for a new <code>HeaderFactory</code>.
+       *
+       * @class
+       *
+       * @extends sap.ui.integration.util.BaseFactory
+       *
+       * @author SAP SE
+       * @version ${version}
+       *
+       * @constructor
+       * @private
+       * @alias sap.ui.integration.util.HeaderFactory
+       */
+      var HeaderFactory = BaseFactory.extend(
+          "sap.ui.integration.util.HeaderFactory",
+      );
+
+      HeaderFactory.prototype.create = function(mConfiguration, oToolbar) {
+        var oHeader, oCard = this._oCard, oActions;
+
+        mConfiguration = this.createBindingInfos(
+            mConfiguration,
+            oCard.getBindingNamespaces(),
         );
 
-        HeaderFactory.prototype.create = function (mConfiguration, oToolbar) {
-            var oHeader,
-                oCard = this._oCard,
-                oActions;
+        oActions = new CardActions({
+          card : oCard,
+          areaType : AreaType.Header,
+        });
 
-            mConfiguration = this.createBindingInfos(
-                mConfiguration,
-                oCard.getBindingNamespaces(),
-            );
+        switch (mConfiguration.type) {
+        case "Numeric":
+          oHeader = new NumericHeader(
+              mConfiguration,
+              oToolbar,
+              oCard._sAppId,
+          );
+          break;
+        default:
+          oHeader = new Header(
+              mConfiguration,
+              oToolbar,
+              oCard._sAppId,
+              oCard._oIconFormatter,
+          );
+          break;
+        }
 
-            oActions = new CardActions({
-                card: oCard,
-                areaType: AreaType.Header,
-            });
+        if (mConfiguration.status && mConfiguration.status.text &&
+            mConfiguration.status.text.format) {
+          if (mConfiguration.status.text.format.translationKey) {
+            oCard._loadDefaultTranslations();
+          }
 
-            switch (mConfiguration.type) {
-                case "Numeric":
-                    oHeader = new NumericHeader(
-                        mConfiguration,
-                        oToolbar,
-                        oCard._sAppId,
-                    );
-                    break;
-                default:
-                    oHeader = new Header(
-                        mConfiguration,
-                        oToolbar,
-                        oCard._sAppId,
-                        oCard._oIconFormatter,
-                    );
-                    break;
-            }
+          bindStatusText(mConfiguration.status.text.format, oHeader);
+        }
 
-            if (
-                mConfiguration.status &&
-                mConfiguration.status.text &&
-                mConfiguration.status.text.format
-            ) {
-                if (mConfiguration.status.text.format.translationKey) {
-                    oCard._loadDefaultTranslations();
-                }
+        oHeader.setServiceManager(oCard._oServiceManager);
+        oHeader.setDataProviderFactory(oCard._oDataProviderFactory);
+        oHeader._setDataConfiguration(mConfiguration.data);
 
-                bindStatusText(mConfiguration.status.text.format, oHeader);
-            }
+        oActions.attach(mConfiguration, oHeader);
+        oHeader._oActions = oActions;
 
-            oHeader.setServiceManager(oCard._oServiceManager);
-            oHeader.setDataProviderFactory(oCard._oDataProviderFactory);
-            oHeader._setDataConfiguration(mConfiguration.data);
+        if (oHeader._bIsEmpty) {
+          oHeader.setVisible(oToolbar.getVisible());
+        }
 
-            oActions.attach(mConfiguration, oHeader);
-            oHeader._oActions = oActions;
+        return oHeader;
+      };
 
-            if (oHeader._bIsEmpty) {
-                oHeader.setVisible(oToolbar.getVisible());
-            }
-
-            return oHeader;
-        };
-
-        return HeaderFactory;
+      return HeaderFactory;
     },
 );
