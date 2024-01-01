@@ -5034,19 +5034,19 @@ sap.ui.define(
              * @returns
              */
             /* currently not needed
-    isThemeBackgroundImageModified: function() {
-            var Parameters =
-    sap.ui.requireSync("sap/ui/core/theming/Parameters"); var sBgImgUrl =
-    Parameters.get('sapUiGlobalBackgroundImage'); // the global background
-    image from the theme if (sBgImgUrl && sBgImgUrl !== "''") { var
-    sBgImgUrlDefault = Parameters.get('sapUiGlobalBackgroundImageDefault');
-                    if (sBgImgUrl !== sBgImgUrlDefault) {
-                            return true;
-                    }
-            }
-            return false;
-    },
-    */
+isThemeBackgroundImageModified: function() {
+        var Parameters =
+sap.ui.requireSync("sap/ui/core/theming/Parameters"); var sBgImgUrl =
+Parameters.get('sapUiGlobalBackgroundImage'); // the global background
+image from the theme if (sBgImgUrl && sBgImgUrl !== "''") { var
+sBgImgUrlDefault = Parameters.get('sapUiGlobalBackgroundImageDefault');
+                if (sBgImgUrl !== sBgImgUrlDefault) {
+                        return true;
+                }
+        }
+        return false;
+},
+*/
 
             /**
              * Renders an HTML tag into the given RenderManager which carries the
@@ -5858,7 +5858,7 @@ sap.ui.define(
                 return "sapUiTableM";
             },
             bFinal: true /* This table helper wins, even when commons helper was
-                      set before */,
+                   set before */,
         });
 
         ObjectPath.set("sap.ui.layout.GridHelper", {

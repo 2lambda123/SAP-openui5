@@ -5230,7 +5230,8 @@ sap.ui.define(
                 // 			sap.ui.getCore().applyTheme("sap_fiori_3_dark");
                 // 			sap.ui.getCore().attachThemeChanged(function
                 // () {
-                // sap.ui.getCore().attachThemeChanged(function () { 					resolve();
+                // sap.ui.getCore().attachThemeChanged(function () {
+                // resolve();
                 // 				});
                 // 				sap.ui.getCore().applyTheme("sap_fiori_3");
                 // 			});
