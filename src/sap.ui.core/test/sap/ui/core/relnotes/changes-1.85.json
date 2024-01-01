@@ -1,27 +1,27 @@
 {
-  "1.85.0": {
-    "date": "December 2020",
-    "notes": [
-      {
-        "id": "3fd7d8a6f745d041ea11f1f5d9c3d4db56f53c13",
-        "type": "FIX",
-        "text": " theming/Parameters: Request library-parameters.json with credentials",
-        "references": [
-          {
-            "type": "BCP",
-            "reference": "2070394805"
-          },
-          {
-            "type": "BCP",
-            "reference": "2070394696"
-          }
+    "1.85.0": {
+        "date": "December 2020",
+        "notes": [
+            {
+                "id": "3fd7d8a6f745d041ea11f1f5d9c3d4db56f53c13",
+                "type": "FIX",
+                "text": " theming/Parameters: Request library-parameters.json with credentials",
+                "references": [
+                    {
+                        "type": "BCP",
+                        "reference": "2070394805"
+                    },
+                    {
+                        "type": "BCP",
+                        "reference": "2070394696"
+                    }
+                ]
+            },
+            {
+                "id": "7156cd210c3c07e801a275bce702a2df48df9280",
+                "type": "FIX",
+                "text": " ManagedObject: Add model name to the correct objectBindings object"
+            }
         ]
-      },
-      {
-        "id": "7156cd210c3c07e801a275bce702a2df48df9280",
-        "type": "FIX",
-        "text": " ManagedObject: Add model name to the correct objectBindings object"
-      }
-    ]
-  }
+    }
 }
