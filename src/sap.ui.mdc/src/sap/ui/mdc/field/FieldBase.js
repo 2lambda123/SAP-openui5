@@ -1887,8 +1887,8 @@ sap.ui.define(
                 //			if (!oContent.isA("sap.ui.core.IFormContent")) {
                 //				// TODO: allow different content than
                 // allowed in
-                // Form? 				throw new Error(oContent + " is not
-                // a valid content! Only use valid content in " + this);
+                // Form? 				throw new Error(oContent + " is
+                // not a valid content! Only use valid content in " + this);
                 //			}
                 _modifyKeyboardHandler.call(this, oContent, true);
                 _attachContentHandlers.call(this, oContent);
@@ -2905,8 +2905,8 @@ sap.ui.define(
                         oProperties,
                     );
                     mDefaultHelps[sType].control = oFieldHelp;
-                    //				this.addDependent(oFieldHelp); // TODO: where
-                    //to add to control tree
+                    //				this.addDependent(oFieldHelp); // TODO:
+                    //where to add to control tree
                     oFieldHelp.connect(this); // to forward dataType
                     if (mDefaultHelps[sType].resolve) {
                         mDefaultHelps[sType].resolve();
