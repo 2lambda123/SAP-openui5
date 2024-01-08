@@ -117,7 +117,7 @@ sap.ui.define(
         var CardEditor = Control.extend(
             "sap.ui.integration.designtime.editor.CardEditor",
             /**
- @lends sap.ui.integration.designtime.editor.CardEditor.prototype
+@lends sap.ui.integration.designtime.editor.CardEditor.prototype
 */
             {
                 metadata: {
