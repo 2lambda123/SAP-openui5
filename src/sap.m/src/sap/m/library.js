@@ -5041,7 +5041,7 @@ Parameters.get('sapUiGlobalBackgroundImage'); // the global background
 image from the theme if (sBgImgUrl && sBgImgUrl !== "''") { var
 sBgImgUrlDefault = Parameters.get('sapUiGlobalBackgroundImageDefault');
 if (sBgImgUrl !== sBgImgUrlDefault) {
-    return true;
+return true;
 }
 }
 return false;
@@ -5858,7 +5858,7 @@ return false;
                 return "sapUiTableM";
             },
             bFinal: true /* This table helper wins, even when commons helper was
-    set before */,
+ set before */,
         });
 
         ObjectPath.set("sap.ui.layout.GridHelper", {

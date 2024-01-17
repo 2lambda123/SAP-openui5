@@ -108,20 +108,20 @@ sap.ui.define(
             /*
 if (sType === "array") {
 if (deepEqual(oTemplate, {})) {
-            oTemplate = {
-                    "key": {
-                            "label": "Key",
-                            "type": "string",
-                            "path": "key"
-                    },
-                    "text": {
-                            "label": "Text",
-                            "type": "string",
-                            "path": "text"
-                    }
-            };
-    }
-    oMapItemConfig[2].allowAddAndRemove = false;
+        oTemplate = {
+                "key": {
+                        "label": "Key",
+                        "type": "string",
+                        "path": "key"
+                },
+                "text": {
+                        "label": "Text",
+                        "type": "string",
+                        "path": "text"
+                }
+        };
+}
+oMapItemConfig[2].allowAddAndRemove = false;
 }*/
             oMapItemConfig[2].visible = !(
                 sType === "group" || sType === "array"
