@@ -659,9 +659,8 @@ sap.ui.define(
                         if (oItem._next && this.getAllowSettings()) {
                             if (oItem._next.editable === false) {
                                 mNext = mNext || {};
-                                mNext[
-                                    oItem._settingspath + "/editable"
-                                ] = false;
+                                mNext[oItem._settingspath + "/editable"] =
+                                    false;
                             }
                             if (oItem._next.visible === false) {
                                 mNext = mNext || {};
@@ -1753,9 +1752,8 @@ sap.ui.define(
                                     function (n, a) {
                                         oItems[n + ".destinaton"]._values =
                                             _values.concat(a);
-                                        oItems[
-                                            n + ".destinaton"
-                                        ]._loading = false;
+                                        oItems[n + ".destinaton"]._loading =
+                                            false;
                                         this._settingsModel.checkUpdate(true);
                                         oItems[n + ".destinaton"].value =
                                             oConfiguration.destinations[n].name;
