@@ -75,7 +75,7 @@ sap.ui.define(
                 "/neo-app.json" /* Load neo-app.json always from root URL */,
             sVersionOverviewJsonPath =
                 "/versionoverview.json" /* Load versionoverview.json always from
-                      root URL */,
+                    root URL */,
             ABOUT_TEXT = "about",
             FEEDBACK_TEXT = "feedback",
             CHANGE_VERSION_TEXT = "change_version",
