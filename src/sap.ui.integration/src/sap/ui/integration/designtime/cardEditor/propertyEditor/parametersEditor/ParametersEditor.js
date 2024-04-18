@@ -110,14 +110,14 @@ if (sType === "array") {
 if (deepEqual(oTemplate, {})) {
 oTemplate = {
 "key": {
-        "label": "Key",
-        "type": "string",
-        "path": "key"
+    "label": "Key",
+    "type": "string",
+    "path": "key"
 },
 "text": {
-        "label": "Text",
-        "type": "string",
-        "path": "text"
+    "label": "Text",
+    "type": "string",
+    "path": "text"
 }
 };
 }
